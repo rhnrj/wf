@@ -1,0 +1,20 @@
+name: KramalCI-WF
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: nexgang/ubuntu:latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Kernel
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/android_kernel_xiaomi_sm7125 kernel
+          cd kernel && bash build_kernel.sh
