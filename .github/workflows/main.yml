@@ -14,6 +14,8 @@ jobs:
 
       - name: Build Kernel
         env:
-          TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b rebase x && cd x && curl https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/a9ce014fd12167f131b8d9b7c264adc83ca17fd9/xxx.sh | bash -s ksu
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b rebase x
+          cd x
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/a9ce014fd12167f131b8d9b7c264adc83ca17fd9/xxx.sh | bash -s ksu
