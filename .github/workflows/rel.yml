@@ -1,0 +1,36 @@
+name: KramalCI-Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: nexgang/ubuntu:latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Release Kernels
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b ksu x
+          cd x
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s ksu
+          cd ..
+
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b nonksu y
+          cd y
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s nonksu
+          cd ..
+
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b miui r
+          cd r
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s miui-ksu
+
+          cd && git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b main z
+          cd z
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s ext
+
