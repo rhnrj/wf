@@ -18,4 +18,4 @@ jobs:
         run: |
           git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b newtest x
           cd x
-          curl -Ls https://gist.githubusercontent.com/reaPeR1010/3f8fb2febf704ee505a80bdda801285d/raw/41cf9469fe4227c74de021efe0b9d0dcc149045c/lav.sh | bash
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/3f8fb2febf704ee505a80bdda801285d/raw/5e6e7af9e006757e1f42bc6acf70f26661063177/lav.sh | bash
