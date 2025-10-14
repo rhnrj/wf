@@ -16,6 +16,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b newtest x
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b main x
           cd x
-          curl -Ls https://gist.githubusercontent.com/reaPeR1010/3f8fb2febf704ee505a80bdda801285d/raw/5e6e7af9e006757e1f42bc6acf70f26661063177/lav.sh | bash
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/b29756a27d341a73a5c89bdc3646045de0713978/xxx.sh | bash
