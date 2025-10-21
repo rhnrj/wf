@@ -1,0 +1,12 @@
+env: # Environment variables to pass to all tasks
+    CIRRUS_CLONE_DEPTH: 1 # No need to clone with the whole history
+    
+task:
+    name: Test
+    timeout_in: 260m
+    container:
+      image: aarunalr/aosp-build
+      cpu: 8
+      memory: 32G
+    down_background_script:
+      - git clone https://github.com/pa-xe/android_kernel_xiaomi_miatoll --depth=1
