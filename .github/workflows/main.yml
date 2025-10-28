@@ -16,5 +16,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b 665 x
-          cd x && bash build.sh
+          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b main x
+          cd x
+          curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s ksu
