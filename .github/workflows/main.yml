@@ -19,12 +19,12 @@ jobs:
           git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b main x
           cd x
           curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s ksu
-          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b nonksu y
+          cd && git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b nonksu y
           cd y
           curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s nonksu
-          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b susfs z
+          cd && git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b susfs z
           cd z
           curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s susfs
-          git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b miui r
+          cd && git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b miui r
           cd r
           curl -Ls https://gist.githubusercontent.com/reaPeR1010/4b5e27fbcb2d25eebe08e7a5e0d4038a/raw/xxx.sh | bash -s miui-ksu
