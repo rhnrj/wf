@@ -1,0 +1,25 @@
+name: KramalCI
+
+on:
+  workflow_dispatch:
+
+env:
+  release: 0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: nexgang/ubuntu:latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Kernel
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          mkdir -p prebuilts/clang/host/linux-x86/custom-clang
+          curl -L https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-prebuilts/clang-r574158.tar.gz \
+            -o /tmp/clang.tar.gz
+          tar -xzf /tmp/clang.tar.gz -C prebuilts/clang/host/linux-x86/custom-clang
