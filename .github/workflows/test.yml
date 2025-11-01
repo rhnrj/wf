@@ -6,9 +6,6 @@ on:
 permissions:
   contents: write
 
-env:
-  release: 0
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +17,7 @@ jobs:
 
       - name: Download and Strip Clang
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           mkdir clang
           wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-prebuilts/clang-r574158.tar.gz -O clang-r574158.tar.gz
@@ -32,7 +29,7 @@ jobs:
 
       - name: Upload to GitHub Release
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh release create clang-r574158 --repo reaPeR1010/AiO --notes "Stripped clang-r574158 prebuilts" || true
           gh release upload clang-r574158 clang-r574158-stripped.tar.gz --repo reaPeR1010/AiO --clobber
