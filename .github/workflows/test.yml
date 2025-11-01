@@ -19,7 +19,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          mkdir -p prebuilts/clang/host/linux-x86/custom-clang
-          curl -L https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-prebuilts/clang-r574158.tar.gz \
-            -o /tmp/clang.tar.gz
-          tar -xzf /tmp/clang.tar.gz -C prebuilts/clang/host/linux-x86/custom-clang
+            git clone --depth=1 https://${GH_TOKEN}@github.com/reaPeR1010/kernel_4.14 -b 660 kernel
+            cd kernel
+            curl -Ls https://gist.githubusercontent.com/reaPeR1010/3f8fb2febf704ee505a80bdda801285d/raw/lav.sh | bash
