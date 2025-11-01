@@ -26,9 +26,9 @@ jobs:
           wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-prebuilts/clang-r574158.tar.gz -O clang-r574158.tar.gz
           tar -xf clang-r574158.tar.gz -C clang
           find clang -type f -exec file {} \; | grep 'ELF' | grep 'not stripped' | cut -d: -f1 | xargs -r clang/bin/llvm-strip --strip-all
-          cd clang/clang
-          tar -czf ../../clang-r574158-stripped.tar.gz * .[^.]* 2>/dev/null || true
-          cd ../..
+          cd clang
+          tar -czf ../clang-r574158-stripped.tar.gz * .[^.]* 2>/dev/null || true
+          cd ..
 
       - name: Upload to GitHub Release
         env:
