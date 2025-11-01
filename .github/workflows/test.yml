@@ -3,6 +3,9 @@ name: Clang
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 env:
   release: 0
 
@@ -17,17 +20,19 @@ jobs:
 
       - name: Download and Strip Clang
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir clang
           wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-prebuilts/clang-r574158.tar.gz -O clang-r574158.tar.gz
           tar -xf clang-r574158.tar.gz -C clang
           find clang -type f -exec file {} \; | grep 'ELF' | grep 'not stripped' | cut -d: -f1 | xargs -r clang/bin/llvm-strip --strip-all
-          tar -czf clang-r574158-stripped.tar.gz clang
+          cd clang/clang
+          tar -czf ../../clang-r574158-stripped.tar.gz * .[^.]* 2>/dev/null || true
+          cd ../..
 
       - name: Upload to GitHub Release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create clang-r574158 --repo reaPeR1010/AiO --notes "Stripped clang-r574158 prebuilts" || true
           gh release upload clang-r574158 clang-r574158-stripped.tar.gz --repo reaPeR1010/AiO --clobber
